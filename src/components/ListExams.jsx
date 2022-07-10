@@ -38,3 +38,6 @@ const styles = StyleSheet.create({
         marginVertical: 5
     }
 })
+
+const [name, setName] = React.useState("");
+const [examDate, setExamDate] = React.useState("");

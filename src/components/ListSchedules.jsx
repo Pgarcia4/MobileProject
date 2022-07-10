@@ -52,3 +52,8 @@ const styles = StyleSheet.create({
         marginVertical: 5
     }
 })
+
+const [name, setName] = React.useState("");
+const [teacher, setTeacher] = React.useState("");
+const [year, setYear] = React.useState("");
+const [schedule, setSchedule] = React.useState("");

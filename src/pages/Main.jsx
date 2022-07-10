@@ -6,9 +6,15 @@ import {
     TouchableOpacity,
     StyleSheet
 } from 'react-native'
-import Ionicons from '@expo/vector-icons/Ionicons';
+import Ionicons from '@expo/vector-icons/Ionicons'
+import { useNavigation } from '@react-navigation/native'
 
 export default function Main() {
+    const handleSchedule = () => {
+        const navigation = useNavigation()
+        navigation.navigate('Schedule')
+    }
+
     return (
         <View>
             <Image source={require('../../assets/logo.png')} style={styles.logo}/>
@@ -32,7 +38,7 @@ export default function Main() {
                         <Text style={styles.buttonText}>Reclamos</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity onPress={handleSchedule} style={styles.button}>
                     <View style={styles.insideButton}>
                         <Ionicons size={54} name="time" color="white" />
                         <Text style={styles.buttonText}>Horarios</Text>

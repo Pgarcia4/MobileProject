@@ -9,16 +9,33 @@ import {
 import { Button } from 'react-native-paper'
 
 export default function Schedule() {
+    //const [name, setName] = React.useState("");
+    //const [teacher, setTeacher] = React.useState("");
+    //const [year, setYear] = React.useState("");
+    //const [schedule, setSchedule] = React.useState("");
     const options = [
         { value: 'chocolate', label: 'Chocolate' },
         { value: 'strawberry', label: 'Strawberry' },
         { value: 'vanilla', label: 'Vanilla' }
     ]
 
+
     return (
         <View>
             <Image source={require('../../assets/logo.png')} style={styles.logo}/>
             <Text style={styles.title}>Horarios de materias</Text>
+            <View style={styles.select}>
+                <Select options={options} placeholder={'Seleccionar carrera'} theme={(theme) => ({
+                                                                                ...theme,
+                                                                                borderRadius: 10,
+                                                                                color: 'white',
+                                                                                colors: {
+                                                                                    ...theme.colors,
+                                                                                    primary25: '#B4BAD9',
+                                                                                    primary: '#878DAD',
+                                                                                }})}
+                />
+            </View>
             <View style={styles.select}>
                 <Select options={options} placeholder={'Seleccionar materia'} theme={(theme) => ({
                                                                                 ...theme,
@@ -51,7 +68,7 @@ const styles = StyleSheet.create({
     select: {
         width: 300,
         marginHorizontal: 'auto',
-        marginTop: 42,
+        marginTop: 22,
     },
     title: {
         color: '#6380D5',

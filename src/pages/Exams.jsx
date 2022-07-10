@@ -14,6 +14,8 @@ export default function Exams() {
         { value: 'strawberry', label: 'Strawberry' },
         { value: 'vanilla', label: 'Vanilla' }
     ]
+    //const [name, setName] = React.useState("");
+    //const [examDate, setExamDate] = React.useState("");
 
     return (
         <View>

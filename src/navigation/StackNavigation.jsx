@@ -15,12 +15,12 @@ export default function StackNavigation() {
         <Stack.Navigator screenOptions={{
             headerShown: false
         }}>
+            <Stack.Screen name='Schedule' component={Schedule}/>
+            <Stack.Screen name='Exams' component={Exams}/>
             <Stack.Screen name='Complains' component={Complains}/>
             <Stack.Screen name='createComplain' component={createComplain}/>
-            <Stack.Screen name='Exams' component={Exams}/>
             <Stack.Screen name='LogIn' component={LogIn}/>
             <Stack.Screen name='Main' component={Main}/>
-            <Stack.Screen name='Schedule' component={Schedule}/>
         </Stack.Navigator>
     )
 }

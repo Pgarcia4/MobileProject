@@ -14,13 +14,13 @@ export default function ListSchedules(name, teacher, year, schedule) {
                     {name}
                 </Text>
                 <Text style={styles.teacher}>
-                    {teacher}
+                    Profesor: {teacher}
                 </Text>
                 <Text style={styles.year}>
-                    {year}
+                    Año: {year}
                 </Text>
                 <Text style={styles.schedule}>
-                    {schedule}
+                    Horario: {schedule}
                 </Text>
             </View>
         </View>
@@ -31,7 +31,8 @@ const styles = StyleSheet.create({
     modal: {
         margin: 20,
         backgroundColor: '#B4BAD9',
-        borderRadius: 10
+        borderRadius: 10,
+        top: 450
     },
     name: {
         margin: 12,
@@ -52,8 +53,3 @@ const styles = StyleSheet.create({
         marginVertical: 5
     }
 })
-
-const [name, setName] = React.useState("");
-const [teacher, setTeacher] = React.useState("");
-const [year, setYear] = React.useState("");
-const [schedule, setSchedule] = React.useState("");

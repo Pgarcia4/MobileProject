@@ -14,7 +14,7 @@ export default function ListExams(name, examDate) {
                     {name}
                 </Text>
                 <Text style={styles.examDate}>
-                    {examDate}
+                    Fecha del examen: {examDate}
                 </Text>
             </View>
         </View>
@@ -25,7 +25,8 @@ const styles = StyleSheet.create({
     modal: {
         margin: 20,
         backgroundColor: '#B4BAD9',
-        borderRadius: 10
+        borderRadius: 10,
+        top: 450
     },
     name: {
         margin: 12,
@@ -38,6 +39,3 @@ const styles = StyleSheet.create({
         marginVertical: 5
     }
 })
-
-const [name, setName] = React.useState("");
-const [examDate, setExamDate] = React.useState("");

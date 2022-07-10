@@ -10,7 +10,7 @@ import Ionicons from '@expo/vector-icons/Ionicons'
 import { useNavigation } from '@react-navigation/native'
 
 export default function Main() {
-    const handleSchedule = () => {
+    function handleSchedule() {
         const navigation = useNavigation()
         navigation.navigate('Schedule')
     }

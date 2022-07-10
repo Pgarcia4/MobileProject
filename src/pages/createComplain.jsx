@@ -1,5 +1,4 @@
 import React from 'react'
-import Select from 'react-select'
 import {
     View,
     Text,
@@ -9,7 +8,7 @@ import {
 } from 'react-native'
 import { TextInput, Button } from 'react-native-paper';
 
-export default function Schedule() {
+export default function createComplain() {
     const [title, setTitle] = React.useState("");
     const [comment, setComment] = React.useState("");
 

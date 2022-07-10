@@ -6,7 +6,6 @@ import {
     TouchableOpacity,
     StyleSheet
 } from 'react-native'
-import { Button } from 'react-native-paper'
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 export default function Main() {

@@ -20,12 +20,22 @@ export default function Main() {
         navigation.navigate('Exams')
     }
 
+    function handleCreateComplain() {
+        const navigation = useNavigation()
+        navigation.navigate('createComplain')
+    }
+
+    function handleGrid() {
+        const navigation = useNavigation()
+        navigation.navigate('Grilla')
+    }
+
     return (
         <View>
             <Image source={require('../../assets/logo.png')} style={styles.logo}/>
             <Text style={styles.title}>Menu Principal</Text>
             <View style={styles.containerColumn}>
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity onPress={handleGrid} style={styles.button}>
                     <View style={styles.insideButton}>
                         <Ionicons size={54} name="grid" color="white" />
                         <Text style={styles.buttonText}>Grilla</Text>
@@ -37,7 +47,7 @@ export default function Main() {
                         <Text style={styles.buttonText}>Fechas de examen</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity onPress={handleCreateComplain} style={styles.button}>
                     <View style={styles.insideButton}>
                         <Ionicons size={54} name="list" color="white" />
                         <Text style={styles.buttonText}>Reclamos</Text>

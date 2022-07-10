@@ -10,9 +10,8 @@ import {
   OpenSans_400Regular
 } from "@expo-google-fonts/dev";
 
-/*
 const Grilla = () => {
-    const [username, setUsername] = React.useState("");
+    const [plan, setUsername] = React.useState("");
     const [password, setPassword] = React.useState("");
 
 
@@ -20,4 +19,4 @@ const Grilla = () => {
         const navigation = useNavigation();
         navigation.navigate('Home');
         console.log(username, password);
-      };*/a
+      };

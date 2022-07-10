@@ -8,12 +8,14 @@ import {
 } from 'react-native'
 import { Button } from 'react-native-paper'
 
-export default function Schedule() {
+export default function Exams() {
     const options = [
         { value: 'chocolate', label: 'Chocolate' },
         { value: 'strawberry', label: 'Strawberry' },
         { value: 'vanilla', label: 'Vanilla' }
     ]
+    //const [name, setName] = React.useState("");
+    //const [examDate, setExamDate] = React.useState("");
 
     return (
         <View>

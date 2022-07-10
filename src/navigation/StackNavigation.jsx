@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import Main from '../pages/Main'
 import LogIn from '../pages/LogIn'
+import Exams from '../pages/Exams'
 import Schedule from '../pages/Schedule'
 
 const Stack = createNativeStackNavigator()
@@ -12,6 +13,7 @@ export default function StackNavigation() {
         <Stack.Navigator screenOptions={{
             headerShown: false
         }}>
+            <Stack.Screen name='Exams' component={Exams}/>
             <Stack.Screen name='LogIn' component={LogIn}/>
             <Stack.Screen name='Main' component={Main}/>
             <Stack.Screen name='Schedule' component={Schedule}/>

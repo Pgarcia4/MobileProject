@@ -15,6 +15,11 @@ export default function Main() {
         navigation.navigate('Schedule')
     }
 
+    function handleExams() {
+        const navigation = useNavigation()
+        navigation.navigate('Exams')
+    }
+
     return (
         <View>
             <Image source={require('../../assets/logo.png')} style={styles.logo}/>
@@ -26,7 +31,7 @@ export default function Main() {
                         <Text style={styles.buttonText}>Grilla</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity onPress={handleExams} style={styles.button}>
                     <View style={styles.insideButton}>
                         <Ionicons size={54} name="calendar" color="white" />
                         <Text style={styles.buttonText}>Fechas de examen</Text>

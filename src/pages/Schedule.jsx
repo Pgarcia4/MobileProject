@@ -3,7 +3,7 @@ import Select from 'react-select'
 import { View, Text, Image, StyleSheet } from 'react-native'
 import { Button } from 'react-native-paper'
 
-export default function Schedule() {
+export default function Schedule({ navigation }) {
     const [carrera, setCarrera] = React.useState('')
     const [materia, setMateria] = React.useState('')
     //const [name, setName] = React.useState("");

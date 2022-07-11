@@ -17,15 +17,17 @@ import {
     Bangers_400Regular,
     OpenSans_400Regular,
 } from '@expo-google-fonts/dev'
-import * as FileSystem from 'expo-file-system';
-import 'react-native-gesture-handler';
-import RNPickerSelect from 'react-native-picker-select';
+import * as FileSystem from 'expo-file-system'
+import 'react-native-gesture-handler'
+import RNPickerSelect from 'react-native-picker-select'
 
 const Grilla = () => {
     const [plan, setPlan] = React.useState('')
     const [carreer, setCarrera] = React.useState('')
     const [grid, setGrid] = React.useState('')
-    const [link, setLink] = React.useState('https://drive.google.com/uc?export=download&id=11YQvQS0KheqkMnt0qs0x_fxgVRAULo_X')
+    const [link, setLink] = React.useState(
+        'https://drive.google.com/uc?export=download&id=11YQvQS0KheqkMnt0qs0x_fxgVRAULo_X'
+    )
 
     const planList = [
         {
@@ -50,7 +52,7 @@ const Grilla = () => {
             label: 'Ingeniería civil',
             value: 'CIV',
         },
-    ];
+    ]
     /*
     const getLink = () => {
       downloadResumable();
@@ -63,7 +65,7 @@ const Grilla = () => {
               setError('Error')
           })
         }*/
-      
+    /*
     
       const callback = downloadProgress => {
         const progress = downloadProgress.totalBytesWritten / downloadProgress.totalBytesExpectedToWrite;
@@ -101,42 +103,44 @@ const Grilla = () => {
         console.log('Finished downloading to ', uri);
       } catch (e) {
         console.error(e);
-      };
+      };*/
 
     return (
         <View>
             <Text style={styles.title}>Grilla</Text>
             <View style={styles.select}>
-               <RNPickerSelect
-               onValueChange={(value) => setPlan(value)}
-               items={[
-                {
-                    label: 'Plan 2022',
-                    value: '2022',
-                },]}
-               />
+                <RNPickerSelect
+                    onValueChange={(value) => setPlan(value)}
+                    items={[
+                        {
+                            label: 'Plan 2022',
+                            value: '2022',
+                        },
+                    ]}
+                />
             </View>
             <View style={styles.select}>
-            <RNPickerSelect
-               onValueChange={(value) => setCarrera(value)}
-               items={[
-                {
-                  label: 'Ingeniería en informática',
-                  value: 'INFO',
-              },
-              {
-                  label: 'Ingeniería industrial',
-                  value: 'IND',
-              },
-              {
-                  label: 'Ingeniería telemática',
-                  value: 'TEL',
-              },
-              {
-                  label: 'Ingeniería civil',
-                  value: 'CIV',
-              },]}
-               />
+                <RNPickerSelect
+                    onValueChange={(value) => setCarrera(value)}
+                    items={[
+                        {
+                            label: 'Ingeniería en informática',
+                            value: 'INFO',
+                        },
+                        {
+                            label: 'Ingeniería industrial',
+                            value: 'IND',
+                        },
+                        {
+                            label: 'Ingeniería telemática',
+                            value: 'TEL',
+                        },
+                        {
+                            label: 'Ingeniería civil',
+                            value: 'CIV',
+                        },
+                    ]}
+                />
                 <Button
                     mode="contained"
                     color="#3C5ACF"

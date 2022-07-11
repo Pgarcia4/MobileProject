@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext, createContext, useState } from 'react'
 import {
     View,
     Image,
@@ -16,44 +16,35 @@ import {
     Bangers_400Regular,
     OpenSans_400Regular,
 } from '@expo-google-fonts/dev'
-import Axios from 'axios'
-import { LoginContext } from '../navigation/StackNavigation'
+import axiosInstance from '../utils/axiosConfigNetwork'
+import { AuthContext } from '../navigation/StackNavigation'
 
 const LogIn = () => {
-    const [mail, setEmail] = React.useState('')
-    const [password, setPassword] = React.useState('')
-    const { setUser } = useContext(LoginContext);
+    const [mail, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [error, setError] = useState('')
 
-    const sendInfo = () =>{
-        axiosInstance
-        .post('login', {
-          mail,
-          password,
-        })
-        .then((res) => {
-          setEmail(res.data)
-        })
-        .catch(() => {
-          setError('Error en el usuario o la contraseña');
-        });
-    }
-    
+    const { signIn } = useContext(AuthContext)
 
     const handleLogin = () => {
-        const navigation = useNavigation()
-        navigation.navigate('Home')
-        console.log(username, password)
-    }
-
-    const getUser = () => {
-        axiosInstance
-          .get(`userPrueba`)
-          .then((res) => {
-              setGrid(res.data)
-          })
-          .catch(() => {
-              setError('Error')
-          })
+        if (mail.length === 0) {
+            setError('Mail cannot be empty')
+        } else if (password.length === 0) {
+            setError('Password cannot be empty')
+        } else {
+            axiosInstance
+                .post('login', {
+                    mail,
+                    password,
+                })
+                .then(() => {
+                    console.log('Hola')
+                    signIn({ mail, password })
+                })
+                .catch(() => {
+                    setError('Error en el usuario o la contraseña')
+                    console.log(error)
+                })
         }
     }
 
@@ -63,9 +54,9 @@ const LogIn = () => {
             <View style={styles.container2}>
                 <View style={styles.textView}>
                     <TextInput
-                        label="Nombre de usuario"
-                        value={username}
-                        onChangeText={(username) => setUsername(username)}
+                        label="Mail de usuario"
+                        value={mail}
+                        onChangeText={(mail) => setEmail(mail)}
                         style={styles.input}
                         activeUnderlineColor="#3C5ACF"
                         underlineColor="#3C5ACF"
@@ -84,7 +75,7 @@ const LogIn = () => {
                 </View>
                 <Button
                     mode="contained"
-                    onPress={sendInfo}
+                    onPress={handleLogin}
                     style={styles.button}
                     color="#3C5ACF"
                     uppercase={false}
@@ -94,7 +85,7 @@ const LogIn = () => {
             </View>
         </ScrollView>
     )
-    
+}
 const styles = StyleSheet.create({
     container: {
         flex: 1,

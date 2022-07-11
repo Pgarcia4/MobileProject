@@ -3,9 +3,8 @@ import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import { useNavigation } from '@react-navigation/native'
 
-export default function Main() {
+export default function Main({ navigation }) {
     function handleSchedule() {
-        const navigation = useNavigation()
         navigation.navigate('Schedule')
     }
 
@@ -14,12 +13,10 @@ export default function Main() {
     }
 
     function handleCreateComplain() {
-        const navigation = useNavigation()
         navigation.navigate('createComplain')
     }
 
     function handleGrid() {
-        const navigation = useNavigation()
         navigation.navigate('Grilla')
     }
 

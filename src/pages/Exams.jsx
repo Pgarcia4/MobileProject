@@ -2,10 +2,13 @@ import React from 'react'
 import { View, Text, Image, StyleSheet } from 'react-native'
 import { Button } from 'react-native-paper'
 import RNPickerSelect from 'react-native-picker-select';
+import { SafeAreaView } from 'react-native-safe-area-context'
 
-export default function Exams() {
+
+export default function Exams({ navigation }) {
     const [carrera, setCarrera] = React.useState('')
     const [materia, setMateria] = React.useState('')
+    const [error, setError] = React.useState('')
 
     //const [name, setName] = React.useState("");
     //const [examDate, setExamDate] = React.useState("");
@@ -64,12 +67,14 @@ export default function Exams() {
 
 
     return (
+        <SafeAreaView>
         <View>
             <Image
                 source={require('../../assets/logo.png')}
                 style={styles.logo}
             />
             <Text style={styles.title}>Fechas de examen</Text>
+            <View style={styles.container}>
             <View style={styles.select}>
                <RNPickerSelect
                placeholder={{ label: 'Seleccionar carrera', value: null}}
@@ -95,8 +100,11 @@ export default function Exams() {
                 >
                     Buscar
                 </Button>
+                <Text style={styles.error}>{error}</Text>
+                </View>
             </View>
         </View>
+        </SafeAreaView>
     )
 }
 
@@ -122,4 +130,11 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginVertical: 12,
     },
+    error: {
+        fontSize: 20,
+        color: '#F00',
+    },
+    container: {
+        alignItems: 'center',
+    }
 })

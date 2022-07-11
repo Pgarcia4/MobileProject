@@ -38,7 +38,7 @@ const Grilla = () => {
     const carreerList = [
         {
             label: 'Ingeniería en informática',
-            value: 'INFO',
+            value: 'INF',
         },
         {
             label: 'Ingeniería industrial',

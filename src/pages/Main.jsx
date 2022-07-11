@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import { useNavigation } from '@react-navigation/native'
-
+import { SafeAreaView } from 'react-native-safe-area-context'
 export default function Main({ navigation }) {
     function handleSchedule() {
         navigation.navigate('Schedule')
@@ -21,6 +21,7 @@ export default function Main({ navigation }) {
     }
 
     return (
+        <SafeAreaView>
         <View>
             <Image
                 source={require('../../assets/logo.png')}
@@ -60,6 +61,8 @@ export default function Main({ navigation }) {
                 </TouchableOpacity>
             </View>
         </View>
+        </SafeAreaView>
+
     )
 }
 

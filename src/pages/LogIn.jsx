@@ -20,24 +20,28 @@ import axiosInstance from '../utils/axiosConfigNetwork'
 import { AuthContext } from '../navigation/StackNavigation'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
-const LogIn = () => {
+const LogIn = (navigation) => {
     const [mail, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
 
     const { signIn } = useContext(AuthContext)
 
+    function handleMain() {
+        navigation.navigate('Main')
+    }
+
     const handleLogin = () => {
         console.log(mail)
         console.log(password)
-
+        const aux = mail.split("@");
         if (mail.length === 0) {
             console.log('Hola1')
 
             setError('Mail cannot be empty')
         } else if (password.length === 0) {
             setError('Password cannot be empty')
-        } else {
+        } else if (aux[1] === "correo.um.edu.uy"){
             axiosInstance
                 .post('login', {
                     mail,
@@ -46,11 +50,14 @@ const LogIn = () => {
                 .then(() => {
                     console.log('Hola')
                     signIn({ mail, password })
+                    handleMain()
                 })
                 .catch(() => {
                     setError('Error en el usuario o la contraseña')
                     console.log(error)
                 })
+        } else{
+            setError('Error, mail inválido.')
         }
 
     return (

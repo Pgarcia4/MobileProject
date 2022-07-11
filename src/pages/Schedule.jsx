@@ -1,7 +1,7 @@
 import React from 'react'
-import Select from 'react-select'
 import { View, Text, Image, StyleSheet } from 'react-native'
 import { Button } from 'react-native-paper'
+import RNPickerSelect from 'react-native-picker-select';
 
 export default function Schedule({ navigation }) {
     const [carrera, setCarrera] = React.useState('')
@@ -10,10 +10,24 @@ export default function Schedule({ navigation }) {
     //const [teacher, setTeacher] = React.useState("");
     //const [year, setYear] = React.useState("");
     //const [schedule, setSchedule] = React.useState("");
-    const options = [
-        { value: 'chocolate', label: 'Chocolate' },
-        { value: 'strawberry', label: 'Strawberry' },
-        { value: 'vanilla', label: 'Vanilla' },
+
+    const carreerList = [
+        {
+            label: 'Ingeniería en informática',
+            value: 'INFO',
+        },
+        {
+            label: 'Ingeniería industrial',
+            value: 'IND',
+        },
+        {
+            label: 'Ingeniería telemática',
+            value: 'TEL',
+        },
+        {
+            label: 'Ingeniería civil',
+            value: 'CIV',
+        },
     ]
 
     return (
@@ -24,37 +38,19 @@ export default function Schedule({ navigation }) {
             />
             <Text style={styles.title}>Horarios de materias</Text>
             <View style={styles.select}>
-                <Select
-                    options={options}
-                    onChange={(choice) => setCarrera(choice.value)}
-                    placeholder={'Seleccionar carrera'}
-                    theme={(theme) => ({
-                        ...theme,
-                        borderRadius: 10,
-                        color: 'white',
-                        colors: {
-                            ...theme.colors,
-                            primary25: '#B4BAD9',
-                            primary: '#878DAD',
-                        },
-                    })}
-                />
+               <RNPickerSelect
+               onValueChange={(value) => setCarrera(value)}
+               items={carreerList}
+               />
             </View>
             <View style={styles.select}>
-                <Select
-                    options={options}
-                    onChange={(choice) => setMateria(choice.value)}
-                    placeholder={'Seleccionar materia'}
-                    theme={(theme) => ({
-                        ...theme,
-                        borderRadius: 10,
-                        color: 'white',
-                        colors: {
-                            ...theme.colors,
-                            primary25: '#B4BAD9',
-                            primary: '#878DAD',
-                        },
-                    })}
+                <RNPickerSelect
+                onValueChange={(value) => setMateria(value)}
+                items={[
+                    {
+                        label: 'Materia 1',
+                        value: 'm1',
+                    }]}
                 />
                 <Button
                     mode="contained"

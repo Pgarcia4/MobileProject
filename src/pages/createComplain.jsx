@@ -6,6 +6,28 @@ export default function CreateComplain() {
     const [title, setTitle] = React.useState('')
     const [comment, setComment] = React.useState('')
 
+    const handleCreateComplain = () => {
+    
+        if (title.length === 0) {
+            console.log('Hola1')
+
+            setError('Mail cannot be empty')
+        } else if (comment.length === 0) {
+            setError('Password cannot be empty')
+        } else {
+            axiosInstance
+                .post('login', {
+                    title,
+                    comment,
+                })
+                .then(() => {
+                    console.log('Hola')
+                })
+                .catch(() => {
+                    setError('Error al guardar el reclamo')
+                })
+        }
+    }
     return (
         <View>
             <Image
@@ -38,6 +60,7 @@ export default function CreateComplain() {
             >
                 Crear
             </Button>
+            <Text style={styles.error}>{error}</Text>
         </View>
     )
 }
@@ -82,4 +105,8 @@ const styles = StyleSheet.create({
         marginHorizontal: 'auto',
         width: 300,
     },
+    error: {
+        fontSize: 20,
+        color: '#F00',
+    }
 })

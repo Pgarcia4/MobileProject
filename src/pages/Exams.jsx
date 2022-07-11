@@ -10,10 +10,43 @@ export default function Exams() {
     //const [name, setName] = React.useState("");
     //const [examDate, setExamDate] = React.useState("");
 
+    const handleSchedule = () => {
+        if (carrera.length === 0) {
+            setError('Debes elegir una opción');
+        } else if (materia.length === 0) {
+            setError('Debes elegir una opción');
+        } else {
+            axiosInstance
+            .get(`api/subject/${materia}/${carrera}`)
+            .then((res) => {
+                setSubjects(res.data)
+            })
+            .catch(() => {
+                setError('Error')
+            })
+        }
+    }
+
+    const handleSubject = (carrera) => {
+        console.log(carrera)
+        if (carrera.length === 0) {
+            setError('Debes elegir una opción');
+        } else {
+            axiosInstance
+            .get(`api/subject/${carrera}`)
+            .then((res) => {
+                setSchedule(res.data)
+            })
+            .catch(() => {
+                setError('Error')
+            })
+        }
+    }
+
     const carreerList = [
         {
             label: 'Ingeniería en informática',
-            value: 'INFO',
+            value: 'INF',
         },
         {
             label: 'Ingeniería industrial',
@@ -29,6 +62,7 @@ export default function Exams() {
         },
     ]
 
+
     return (
         <View>
             <Image
@@ -39,7 +73,7 @@ export default function Exams() {
             <View style={styles.select}>
                <RNPickerSelect
                placeholder={{ label: 'Seleccionar carrera', value: null}}
-               onValueChange={(value) => setCarrera(value)}
+               onValueChange={(value) => handleSubject(value)}
                items={carreerList}
                />
             </View>

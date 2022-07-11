@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native'
 import { TextInput, Button } from 'react-native-paper'
+import Ionicons from '@expo/vector-icons/Ionicons'
 
 export default function CreateComplain() {
     const [title, setTitle] = React.useState('')
@@ -28,6 +29,14 @@ export default function CreateComplain() {
                 })
         }
     }
+
+    function handleMain() {
+        navigation.navigate('Main')
+    }
+    function handleBack() {
+        navigation.navigate('Main')
+    }
+
     return (
         <View>
             <Image
@@ -61,6 +70,10 @@ export default function CreateComplain() {
                 Crear
             </Button>
             <Text style={styles.error}>{error}</Text>
+            <View style={styles.navContainer}>
+                <Ionicons size={34} name="arrow-back" color="white"  onPress={handleBack} style={styles.backButton}/>
+                <Ionicons size={34} name="home" color="white" onPress={handleMain} style={styles.homeButton}/>
+            </View>
         </View>
     )
 }
@@ -108,5 +121,17 @@ const styles = StyleSheet.create({
     error: {
         fontSize: 20,
         color: '#F00',
-    }
+    },
+    navContainer: {
+        backgroundColor: '#263F64',
+        flexDirection: 'row',
+        top: 235,
+        padding: 10,
+    }, 
+    backButton: {
+        marginLeft: 150,
+    },
+    homeButton: {
+        marginHorizontal: 140,
+    },
 })

@@ -20,7 +20,7 @@ import axiosInstance from '../utils/axiosConfigNetwork'
 import { AuthContext } from '../navigation/StackNavigation'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
-const LogIn = (navigation) => {
+export default function LogIn({navigation}) {
     const [mail, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
@@ -35,18 +35,20 @@ const LogIn = (navigation) => {
         console.log(mail)
         console.log(password)
         const aux = mail.split("@");
+        console.log(aux[1])
         if (mail.length === 0) {
             console.log('Hola1')
 
             setError('Mail cannot be empty')
         } else if (password.length === 0) {
             setError('Password cannot be empty')
-        } else if (aux[1] === "correo.um.edu.uy"){
+        }
+        else if (aux[1] != "correo.um.edu.uy") {
+            setError('Error, mail inválido.')
+        } else{
+            console.log("hhh");
             axiosInstance
-                .post('login', {
-                    mail,
-                    password,
-                })
+                .get(`https://project-um-app-mobile.herokuapp.com/login/${mail}/${password}`, {withCredentials: false})
                 .then(() => {
                     console.log('Hola')
                     signIn({ mail, password })
@@ -56,12 +58,10 @@ const LogIn = (navigation) => {
                     setError('Error en el usuario o la contraseña')
                     console.log(error)
                 })
-        } else{
-            setError('Error, mail inválido.')
-        }
+        } 
+    };
 
     return (
-        <SafeAreaView>
         <ScrollView contentContainerStyle={styles.container}>
             <Image source={Logo} resizeMode="contain" style={styles.logo} />
             <View style={styles.container2}>
@@ -98,8 +98,7 @@ const LogIn = (navigation) => {
                 <Text style={styles.error}>{error}</Text>
             </View>
         </ScrollView>
-        </SafeAreaView>
-    )
+    );
 }
 const styles = StyleSheet.create({
     container: {
@@ -146,5 +145,4 @@ const styles = StyleSheet.create({
         color: '#F00',
     },
 })
-}
-export default LogIn
+

@@ -3,12 +3,15 @@ import { View, Text, Image, StyleSheet } from 'react-native'
 import { Button } from 'react-native-paper'
 import RNPickerSelect from 'react-native-picker-select';
 import { SafeAreaView } from 'react-native-safe-area-context'
+import axiosInstance from '../utils/axiosConfigNetwork';
+import Ionicons from '@expo/vector-icons/Ionicons'
 
 
 export default function Exams({ navigation }) {
     const [carrera, setCarrera] = React.useState('')
     const [materia, setMateria] = React.useState('')
     const [error, setError] = React.useState('')
+    const [subjects, setSubjects] = React.useState("");
 
     //const [name, setName] = React.useState("");
     //const [examDate, setExamDate] = React.useState("");
@@ -30,15 +33,18 @@ export default function Exams({ navigation }) {
         }
     }
 
-    const handleSubject = (carrera) => {
+    const handleCareer = (carrera) => {
         console.log(carrera)
         if (carrera.length === 0) {
             setError('Debes elegir una opción');
         } else {
             axiosInstance
-            .get(`api/subject/${carrera}`)
+            .get(`https://project-um-app-mobile.herokuapp.com/api/subjectCareer/${carrera}`, {withCredentials: false})
             .then((res) => {
-                setSchedule(res.data)
+                for (let i = 0; i < res.data.length; i++) {
+                    subjectList.push({ label: res.data[i].name, value: res.data[i].name})
+                }
+                setSubjects(subjectList)
             })
             .catch(() => {
                 setError('Error')
@@ -65,6 +71,14 @@ export default function Exams({ navigation }) {
         },
     ]
 
+    const subjectList = []
+
+    function handleMain() {
+        navigation.navigate('Main')
+    }
+    function handleBack() {
+        navigation.navigate('Main')
+    }
 
     return (
         <SafeAreaView>
@@ -78,7 +92,7 @@ export default function Exams({ navigation }) {
             <View style={styles.select}>
                <RNPickerSelect
                placeholder={{ label: 'Seleccionar carrera', value: null}}
-               onValueChange={(value) => handleSubject(value)}
+               onValueChange={(value) => handleCareer(value)}
                items={carreerList}
                />
             </View>
@@ -86,11 +100,7 @@ export default function Exams({ navigation }) {
                 <RNPickerSelect 
                 placeholder={{ label: 'Seleccionar materia', value: null}}
                 onValueChange={(value) => setMateria(value)}
-                items={[
-                    {
-                        label: 'Materia 1',
-                        value: 'm1',
-                    }]}
+                items={subjects}
                 />
                 <Button
                     mode="contained"
@@ -102,6 +112,10 @@ export default function Exams({ navigation }) {
                 </Button>
                 <Text style={styles.error}>{error}</Text>
                 </View>
+            </View>
+            <View style={styles.navContainer}>
+                <Ionicons size={34} name="arrow-back" color="white"  onPress={handleBack} style={styles.backButton}/>
+                <Ionicons size={34} name="home" color="white" onPress={handleMain} style={styles.homeButton}/>
             </View>
         </View>
         </SafeAreaView>
@@ -136,5 +150,20 @@ const styles = StyleSheet.create({
     },
     container: {
         alignItems: 'center',
-    }
+    },
+    container: {
+        alignItems: 'center',
+    },
+    navContainer: {
+        backgroundColor: '#263F64',
+        flexDirection: 'row',
+        top: 235,
+        padding: 10,
+    }, 
+    backButton: {
+        marginLeft: 150,
+    },
+    homeButton: {
+        marginHorizontal: 140,
+    },
 })

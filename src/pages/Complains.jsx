@@ -1,10 +1,18 @@
 import React from 'react'
 import { ScrollView, Image, StyleSheet } from 'react-native'
 import { Button } from 'react-native-paper'
+import Ionicons from '@expo/vector-icons/Ionicons'
 
 export default function Complains({ navigation }) {
     function handleCreateComplain() {
         navigation.navigate('CreateComplain')
+    }
+
+    function handleMain() {
+        navigation.navigate('Main')
+    }
+    function handleBack() {
+        navigation.navigate('Main')
     }
 
     return (
@@ -22,6 +30,10 @@ export default function Complains({ navigation }) {
             >
                 + Crear reclamo
             </Button>
+            <View style={styles.navContainer}>
+                <Ionicons size={34} name="arrow-back" color="white"  onPress={handleBack} style={styles.backButton}/>
+                <Ionicons size={34} name="home" color="white" onPress={handleMain} style={styles.homeButton}/>
+            </View>
         </ScrollView>
     )
 }
@@ -36,5 +48,17 @@ const styles = StyleSheet.create({
         width: 145,
         height: 65,
         marginLeft: 6,
+    },
+    navContainer: {
+        backgroundColor: '#263F64',
+        flexDirection: 'row',
+        top: 235,
+        padding: 10,
+    }, 
+    backButton: {
+        marginLeft: 150,
+    },
+    homeButton: {
+        marginHorizontal: 140,
     },
 })

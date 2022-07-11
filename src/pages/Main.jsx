@@ -1,11 +1,5 @@
 import React from 'react'
-import {
-    View,
-    Text,
-    Image,
-    TouchableOpacity,
-    StyleSheet
-} from 'react-native'
+import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import { useNavigation } from '@react-navigation/native'
 
@@ -31,7 +25,10 @@ export default function Main() {
 
     return (
         <View>
-            <Image source={require('../../assets/logo.png')} style={styles.logo}/>
+            <Image
+                source={require('../../assets/logo.png')}
+                style={styles.logo}
+            />
             <Text style={styles.title}>Menu Principal</Text>
             <View style={styles.containerColumn}>
                 <TouchableOpacity onPress={handleGrid} style={styles.button}>
@@ -46,13 +43,19 @@ export default function Main() {
                         <Text style={styles.buttonText}>Fechas de examen</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={handleCreateComplain} style={styles.button}>
+                <TouchableOpacity
+                    onPress={handleCreateComplain}
+                    style={styles.button}
+                >
                     <View style={styles.insideButton}>
                         <Ionicons size={54} name="list" color="white" />
                         <Text style={styles.buttonText}>Reclamos</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={handleSchedule} style={styles.button}>
+                <TouchableOpacity
+                    onPress={handleSchedule}
+                    style={styles.button}
+                >
                     <View style={styles.insideButton}>
                         <Ionicons size={54} name="time" color="white" />
                         <Text style={styles.buttonText}>Horarios</Text>
@@ -75,31 +78,31 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     insideButton: {
-        alignItems: 'center'
+        alignItems: 'center',
     },
     buttonText: {
         fontSize: 25,
         color: '#ffffff',
-        fontWeight: 'bold',
-        textAlign: 'center'
+        //fontWeight: 'bold',
+        textAlign: 'center',
     },
     containerColumn: {
         flex: 1,
-        flexWrap: "wrap",
+        flexWrap: 'wrap',
         alignItems: 'center',
         justifyContent: 'center',
-        flexDirection: 'row'
+        flexDirection: 'row',
     },
     logo: {
         width: 145,
         height: 65,
-        marginLeft:6
+        marginLeft: 6,
     },
     title: {
         color: '#6380D5',
-        fontWeight: 700,
+        fontWeight: '700',
         fontSize: 72,
         textAlign: 'center',
-        marginVertical: 12
-    }
+        marginVertical: 12,
+    },
 })

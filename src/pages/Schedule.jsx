@@ -2,6 +2,7 @@ import React from 'react'
 import { View, Text, Image, StyleSheet } from 'react-native'
 import { Button } from 'react-native-paper'
 import RNPickerSelect from 'react-native-picker-select';
+import axiosInstance from '../utils/axiosConfigNetwork';
 
 export default function Schedule({ navigation }) {
     const [carrera, setCarrera] = React.useState('')
@@ -10,6 +11,33 @@ export default function Schedule({ navigation }) {
     //const [teacher, setTeacher] = React.useState("");
     //const [year, setYear] = React.useState("");
     //const [schedule, setSchedule] = React.useState("");
+
+    const handleSchedule = () => {
+        console.log(mail)
+        console.log(password)
+
+        if (mail.length === 0) {
+            console.log('Hola1')
+
+            setError('Mail cannot be empty')
+        } else if (password.length === 0) {
+            setError('Password cannot be empty')
+        } else {
+            axiosInstance
+                .post('login', {
+                    mail,
+                    password,
+                })
+                .then(() => {
+                    console.log('Hola')
+                    signIn({ mail, password })
+                })
+                .catch(() => {
+                    setError('Error en el usuario o la contraseña')
+                    console.log(error)
+                })
+        }
+    }
 
     const carreerList = [
         {

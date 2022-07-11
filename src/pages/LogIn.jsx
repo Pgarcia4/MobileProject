@@ -27,7 +27,12 @@ const LogIn = () => {
     const { signIn } = useContext(AuthContext)
 
     const handleLogin = () => {
+        console.log(mail)
+        console.log(password)
+
         if (mail.length === 0) {
+            console.log('Hola1')
+
             setError('Mail cannot be empty')
         } else if (password.length === 0) {
             setError('Password cannot be empty')

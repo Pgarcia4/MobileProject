@@ -21,8 +21,9 @@ import * as FileSystem from 'expo-file-system'
 import 'react-native-gesture-handler'
 import RNPickerSelect from 'react-native-picker-select'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import Ionicons from '@expo/vector-icons/Ionicons'
 
-const Grilla = ({navigation}) => {
+export default function Grilla({ navigation }) {
     const [plan, setPlan] = React.useState('')
     const [carreer, setCarrera] = React.useState('')
     const [grid, setGrid] = React.useState('')
@@ -68,6 +69,13 @@ const Grilla = ({navigation}) => {
                 setError('Error')
             })
         }
+    }
+
+    function handleMain() {
+        navigation.navigate('Main')
+    }
+    function handleBack() {
+        navigation.navigate('Main')
     }
 
     return (
@@ -134,6 +142,10 @@ const Grilla = ({navigation}) => {
                     />
                     }
                 </View>
+                <View style={styles.navContainer}>
+                <Ionicons size={34} name="arrow-back" color="white"  onPress={handleBack} style={styles.backButton}/>
+                <Ionicons size={34} name="home" color="white" onPress={handleMain} style={styles.homeButton}/>
+            </View>
             </View>
             </View>
         </View>
@@ -180,6 +192,18 @@ const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
     },
+    navContainer: {
+        backgroundColor: '#263F64',
+        flexDirection: 'row',
+        top: 235,
+        padding: 10,
+    }, 
+    backButton: {
+        marginLeft: 150,
+    },
+    homeButton: {
+        marginHorizontal: 140,
+    }
 })
 
-export default Grilla
+

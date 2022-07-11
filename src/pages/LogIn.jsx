@@ -18,6 +18,7 @@ import {
 } from '@expo-google-fonts/dev'
 import axiosInstance from '../utils/axiosConfigNetwork'
 import { AuthContext } from '../navigation/StackNavigation'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 const LogIn = () => {
     const [mail, setEmail] = useState('')
@@ -54,6 +55,7 @@ const LogIn = () => {
     }
 
     return (
+        <SafeAreaView>
         <ScrollView contentContainerStyle={styles.container}>
             <Image source={Logo} resizeMode="contain" style={styles.logo} />
             <View style={styles.container2}>
@@ -87,8 +89,10 @@ const LogIn = () => {
                 >
                     Log in
                 </Button>
+                <Text style={styles.error}>{error}</Text>
             </View>
         </ScrollView>
+        </SafeAreaView>
     )
 }
 const styles = StyleSheet.create({
@@ -130,6 +134,10 @@ const styles = StyleSheet.create({
         width: '100%',
         //alignItems: "left",
         alignContent: 'flex-start',
+    },
+    error: {
+        fontSize: 20,
+        color: '#F00',
     },
 })
 export default LogIn

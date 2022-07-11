@@ -40,7 +40,7 @@ export default function Schedule({ navigation }) {
             axiosInstance
             .get(`api/subject/${carrera}`)
             .then((res) => {
-                setSchedule(res.data)
+                setSubjects(res.data)
             })
             .catch(() => {
                 setError('Error')
@@ -87,8 +87,8 @@ export default function Schedule({ navigation }) {
             </View>
             <View style={styles.select}>
                 <RNPickerSelect
-                onValueChange={(value) => setMateria(value)}
-                items={carreerList}
+                onValueChange={(name) => setMateria(name)}
+                items={subjects}
                 />
                 <Button
                     mode="contained"

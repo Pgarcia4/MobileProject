@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
     navContainer: {
         backgroundColor: '#263F64',
         flexDirection: 'row',
-        top: 215,
+        top: 185,
         padding: 10,
     }, 
     backButton: {

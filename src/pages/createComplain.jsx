@@ -72,10 +72,10 @@ export default function CreateComplain() {
                 Crear
             </Button>
             <Text style={styles.error}>{error}</Text>
+            </View>
             <View style={styles.navContainer}>
                 <Ionicons size={34} name="arrow-back" color="white"  onPress={handleBack} style={styles.backButton}/>
                 <Ionicons size={34} name="home" color="white" onPress={handleMain} style={styles.homeButton}/>
-            </View>
             </View>
         </View>
         </SafeAreaView>
@@ -129,11 +129,11 @@ const styles = StyleSheet.create({
     navContainer: {
         backgroundColor: '#263F64',
         flexDirection: 'row',
-        top: 235,
+        top: 90,
         padding: 10,
     }, 
     backButton: {
-        marginLeft: 150,
+        marginLeft: 100,
     },
     homeButton: {
         marginHorizontal: 140,

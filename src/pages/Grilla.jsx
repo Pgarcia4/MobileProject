@@ -142,11 +142,11 @@ export default function Grilla({ navigation }) {
                     />
                     }
                 </View>
-                <View style={styles.navContainer}>
+                </View>
+            </View>
+            <View style={styles.navContainer}>
                 <Ionicons size={34} name="arrow-back" color="white"  onPress={handleBack} style={styles.backButton}/>
                 <Ionicons size={34} name="home" color="white" onPress={handleMain} style={styles.homeButton}/>
-            </View>
-            </View>
             </View>
         </View>
         </SafeAreaView>
@@ -195,14 +195,14 @@ const styles = StyleSheet.create({
     navContainer: {
         backgroundColor: '#263F64',
         flexDirection: 'row',
-        top: 235,
+        top: 35,
         padding: 10,
     }, 
     backButton: {
-        marginLeft: 150,
+        marginLeft: 95,
     },
     homeButton: {
-        marginHorizontal: 140,
+        marginHorizontal: 130,
     }
 })
 

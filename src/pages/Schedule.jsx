@@ -1,11 +1,13 @@
 import React from 'react'
-import { View, Text, Image, StyleSheet } from 'react-native'
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
 import { Button } from 'react-native-paper'
 import RNPickerSelect from 'react-native-picker-select';
 import axiosInstance from '../utils/axiosConfigNetwork';
 import { SafeAreaView } from 'react-native-safe-area-context'
+import Ionicons from '@expo/vector-icons/Ionicons'
 
 export default function Schedule({ navigation }) {
+    const [carrera, setCarrera] = React.useState('')
     const [materia, setMateria] = React.useState('')
     const [error, setError] = React.useState('')
     //const [name, setName] = React.useState("");
@@ -14,28 +16,33 @@ export default function Schedule({ navigation }) {
     const [schedule, setSchedule] = React.useState("");
     const [subjects, setSubjects] = React.useState("");
 
-    const handleSchedule = (materia) => {
-        console.log(materia)
-
-        axiosInstance
-        .get(`https://project-um-app-mobile.herokuapp.com/api/subjectCode/${materia}`, {withCredentials: false})
-        .then((res) => {
-            console.log(res.data.schedule)
-        })
-        .catch(() => {
-            setError('No se selecciono materia')
-        })
-    }
+    // const handleSchedule = () => {
+    //     if (carrera.length === 0) {
+    //         setError('Debes elegir una opción');
+    //     } else if (materia.length === 0) {
+    //         setError('Debes elegir una opción');
+    //     } else {
+    //         axiosInstance
+    //         .get(`api/subject/${materia}/${carrera}`)
+    //         .then((res) => {
+    //             setSubjects(res.data)
+    //         })
+    //         .catch(() => {
+    //             setError('Error')
+    //         })
+    //     }
+    // }
 
     const handleCareer = (carrera) => {
+        console.log(carrera)
         if (carrera.length === 0) {
-            setError('Debes elegir una opcion');
+            setError('Debes elegir una opción');
         } else {
             axiosInstance
             .get(`https://project-um-app-mobile.herokuapp.com/api/subjectCareer/${carrera}`, {withCredentials: false})
             .then((res) => {
                 for (let i = 0; i < res.data.length; i++) {
-                    subjectList.push({ label: res.data[i].name, value: res.data[i].code})
+                    subjectList.push({ label: res.data[i].name, value: res.data[i].name})
                 }
                 setSubjects(subjectList)
             })
@@ -66,6 +73,12 @@ export default function Schedule({ navigation }) {
 
     const subjectList = []
 
+    function handleMain() {
+        navigation.navigate('Main')
+    }
+    function handleBack() {
+        navigation.navigate('Main')
+    }
 
 
     return (
@@ -92,7 +105,6 @@ export default function Schedule({ navigation }) {
                 items={subjects}
                 />
                 <Button
-                    onPress={handleSchedule(materia)}
                     mode="contained"
                     color="#3C5ACF"
                     uppercase={false}
@@ -101,6 +113,10 @@ export default function Schedule({ navigation }) {
                     Buscar
                 </Button>
                 <Text style={styles.error}>{error}</Text>
+            </View>
+            <View style={styles.navContainer}>
+                <Ionicons size={34} name="arrow-back" color="white"  onPress={handleBack} style={styles.backButton}/>
+                <Ionicons size={34} name="home" color="white" onPress={handleMain} style={styles.homeButton}/>
             </View>
             </View>
         </View>
@@ -136,5 +152,18 @@ const styles = StyleSheet.create({
     },
     container: {
         alignItems: 'center',
-    }
+    },
+    navContainer: {
+        backgroundColor: '#263F64',
+        flexDirection: 'row',
+        top: 235,
+        padding: 10,
+    }, 
+    backButton: {
+        marginLeft: 150,
+    },
+    homeButton: {
+        marginHorizontal: 140,
+    },
+   
 })

@@ -1,9 +1,10 @@
 import React from 'react'
-import { View, Text, Image, StyleSheet } from 'react-native'
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
 import { Button } from 'react-native-paper'
 import RNPickerSelect from 'react-native-picker-select';
 import axiosInstance from '../utils/axiosConfigNetwork';
 import { SafeAreaView } from 'react-native-safe-area-context'
+import Ionicons from '@expo/vector-icons/Ionicons'
 
 export default function Schedule({ navigation }) {
     const [carrera, setCarrera] = React.useState('')
@@ -72,6 +73,12 @@ export default function Schedule({ navigation }) {
 
     const subjectList = []
 
+    function handleMain() {
+        navigation.navigate('Main')
+    }
+    function handleBack() {
+        navigation.navigate('Main')
+    }
 
 
     return (
@@ -107,6 +114,10 @@ export default function Schedule({ navigation }) {
                 </Button>
                 <Text style={styles.error}>{error}</Text>
             </View>
+            <View style={styles.navContainer}>
+                <Ionicons size={34} name="arrow-back" color="white"  onPress={handleBack} style={styles.backButton}/>
+                <Ionicons size={34} name="home" color="white" onPress={handleMain} style={styles.homeButton}/>
+            </View>
             </View>
         </View>
         </SafeAreaView>
@@ -141,5 +152,18 @@ const styles = StyleSheet.create({
     },
     container: {
         alignItems: 'center',
-    }
+    },
+    navContainer: {
+        backgroundColor: '#263F64',
+        flexDirection: 'row',
+        top: 235,
+        padding: 10,
+    }, 
+    backButton: {
+        marginLeft: 150,
+    },
+    homeButton: {
+        marginHorizontal: 140,
+    },
+   
 })

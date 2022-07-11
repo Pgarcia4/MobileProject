@@ -114,6 +114,7 @@ export default function StackNavigation({ navigation }) {
                             <Stack.Screen name="Exams" component={Exams} />
                             <Stack.Screen name="Complains" component={Complains}/>
                             <Stack.Screen name="CreateComplain" component={CreateComplain}/>
+
                         </>
                     )}
                 </Stack.Navigator>

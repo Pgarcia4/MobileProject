@@ -12,8 +12,8 @@ export default function Main({ navigation }) {
         navigation.navigate('Exams')
     }
 
-    function handleCreateComplain() {
-        navigation.navigate('createComplain')
+    function handleComplains() {
+        navigation.navigate('Complains')
     }
 
     function handleGrid() {
@@ -41,7 +41,7 @@ export default function Main({ navigation }) {
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    onPress={handleCreateComplain}
+                    onPress={handleComplains}
                     style={styles.button}
                 >
                     <View style={styles.insideButton}>

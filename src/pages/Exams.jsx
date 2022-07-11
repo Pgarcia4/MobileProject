@@ -77,12 +77,14 @@ export default function Exams({ navigation }) {
             <View style={styles.container}>
             <View style={styles.select}>
                <RNPickerSelect
+               placeholder={{ label: 'Seleccionar carrera', value: null}}
                onValueChange={(value) => handleSubject(value)}
                items={carreerList}
                />
             </View>
             <View style={styles.select}>
-                <RNPickerSelect
+                <RNPickerSelect 
+                placeholder={{ label: 'Seleccionar materia', value: null}}
                 onValueChange={(value) => setMateria(value)}
                 items={[
                     {

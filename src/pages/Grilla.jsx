@@ -110,6 +110,7 @@ const Grilla = () => {
             <Text style={styles.title}>Grilla</Text>
             <View style={styles.select}>
                 <RNPickerSelect
+                    placeholder={{ label: 'Seleccionar plan', value: null}}
                     onValueChange={(value) => setPlan(value)}
                     items={[
                         {
@@ -121,6 +122,7 @@ const Grilla = () => {
             </View>
             <View style={styles.select}>
                 <RNPickerSelect
+                    placeholder={{ label: 'Seleccionar carrera', value: null}}
                     onValueChange={(value) => setCarrera(value)}
                     items={[
                         {

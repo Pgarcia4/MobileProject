@@ -1,12 +1,10 @@
 import React from 'react'
 import { ScrollView, Image, StyleSheet } from 'react-native'
 import { Button } from 'react-native-paper'
-import { useNavigation } from '@react-navigation/native'
 
-export default function Complains() {
+export default function Complains({ navigation }) {
     function handleCreateComplain() {
-        const navigation = useNavigation()
-        navigation.navigate('createComplain')
+        navigation.navigate('CreateComplain')
     }
 
     return (

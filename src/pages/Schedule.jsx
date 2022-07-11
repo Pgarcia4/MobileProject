@@ -80,6 +80,7 @@ export default function Schedule({ navigation }) {
             <View style={styles.container}>
             <View style={styles.select}>
                <RNPickerSelect
+               placeholder={{ label: 'Seleccionar carrera', value: null}}
                onValueChange={(value) => handleSubject(value)}
                items={carreerList}
                
@@ -87,8 +88,9 @@ export default function Schedule({ navigation }) {
             </View>
             <View style={styles.select}>
                 <RNPickerSelect
-                onValueChange={(name) => setMateria(name)}
-                items={subjects}
+                placeholder={{ label: 'Seleccionar materia', value: null}}
+                onValueChange={(value) => setMateria(value)}
+                items={carreerList}
                 />
                 <Button
                     mode="contained"

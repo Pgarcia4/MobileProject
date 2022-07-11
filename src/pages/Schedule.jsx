@@ -67,12 +67,14 @@ export default function Schedule({ navigation }) {
             <Text style={styles.title}>Horarios de materias</Text>
             <View style={styles.select}>
                <RNPickerSelect
+               placeholder={{ label: 'Seleccionar carrera', value: null}}
                onValueChange={(value) => setCarrera(value)}
                items={carreerList}
                />
             </View>
             <View style={styles.select}>
                 <RNPickerSelect
+                placeholder={{ label: 'Seleccionar materia', value: null}}
                 onValueChange={(value) => setMateria(value)}
                 items={[
                     {

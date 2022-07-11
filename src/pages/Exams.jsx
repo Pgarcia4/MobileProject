@@ -38,12 +38,14 @@ export default function Exams() {
             <Text style={styles.title}>Fechas de examen</Text>
             <View style={styles.select}>
                <RNPickerSelect
+               placeholder={{ label: 'Seleccionar carrera', value: null}}
                onValueChange={(value) => setCarrera(value)}
                items={carreerList}
                />
             </View>
             <View style={styles.select}>
-                <RNPickerSelect
+                <RNPickerSelect 
+                placeholder={{ label: 'Seleccionar materia', value: null}}
                 onValueChange={(value) => setMateria(value)}
                 items={[
                     {

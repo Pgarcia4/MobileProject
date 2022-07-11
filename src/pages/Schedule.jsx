@@ -41,7 +41,7 @@ export default function Schedule({ navigation }) {
             .get(`https://project-um-app-mobile.herokuapp.com/api/subjectCareer/${carrera}`, {withCredentials: false})
             .then((res) => {
                 for (let i = 0; i < res.data.length; i++) {
-                    subjectList.push({ label: res.data[i].name, value: res.data[i].name})
+                    subjectList.push({ label: res.data[i].name, value: res.data[i].code})
                 }
                 setSubjects(subjectList)
             })

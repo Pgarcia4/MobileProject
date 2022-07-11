@@ -73,6 +73,7 @@ const Grilla = () => {
             <Text style={styles.title}>Grilla</Text>
             <View style={styles.select}>
                <RNPickerSelect
+               placeholder={{ label: 'Seleccionar plan', value: null}}
                onValueChange={(value) => setPlan(value)}
                items={[
                 {
@@ -87,6 +88,7 @@ const Grilla = () => {
             </View>
             <View style={styles.select}>
             <RNPickerSelect
+               placeholder={{ label: 'Seleccionar carrera', value: null}}
                onValueChange={(value) => setCarrera(value)}
                items={[
                 {
@@ -115,10 +117,11 @@ const Grilla = () => {
                 >
                     Buscar
                 </Button>
-                <View>
+                <View style={styles.planView}>
                     {link && 
                     <Image
-                    style={{width: 2000, height: 1000}}
+                    resizeMode={'contain'}
+                    style={styles.plan}
                     source={{uri: link}}
                     />
                     }
@@ -129,6 +132,16 @@ const Grilla = () => {
 }
 
 const styles = StyleSheet.create({
+    planView: {
+        width: 300,
+        height: 180,
+        marginHorizontal: 'auto',
+        marginTop: 22
+    },
+    plan: {
+        width: 300,
+        height: 180
+    },
     button: {
         marginVertical: 42,
         width: '100%',

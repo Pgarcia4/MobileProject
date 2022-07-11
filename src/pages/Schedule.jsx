@@ -15,32 +15,35 @@ export default function Schedule({ navigation }) {
     const [schedule, setSchedule] = React.useState("");
     const [subjects, setSubjects] = React.useState("");
 
-    const handleSchedule = () => {
-        if (carrera.length === 0) {
-            setError('Debes elegir una opción');
-        } else if (materia.length === 0) {
-            setError('Debes elegir una opción');
-        } else {
-            axiosInstance
-            .get(`api/subject/${materia}/${carrera}`)
-            .then((res) => {
-                setSubjects(res.data)
-            })
-            .catch(() => {
-                setError('Error')
-            })
-        }
-    }
+    // const handleSchedule = () => {
+    //     if (carrera.length === 0) {
+    //         setError('Debes elegir una opción');
+    //     } else if (materia.length === 0) {
+    //         setError('Debes elegir una opción');
+    //     } else {
+    //         axiosInstance
+    //         .get(`api/subject/${materia}/${carrera}`)
+    //         .then((res) => {
+    //             setSubjects(res.data)
+    //         })
+    //         .catch(() => {
+    //             setError('Error')
+    //         })
+    //     }
+    // }
 
-    const handleSubject = (carrera) => {
+    const handleCareer = (carrera) => {
         console.log(carrera)
         if (carrera.length === 0) {
             setError('Debes elegir una opción');
         } else {
             axiosInstance
-            .get(`api/subject/${carrera}`)
+            .get(`https://project-um-app-mobile.herokuapp.com/api/subjectCareer/${carrera}`, {withCredentials: false})
             .then((res) => {
-                setSubjects(res.data)
+                for (let i = 0; i < res.data.length; i++) {
+                    subjectList.push({ label: res.data[i].name, value: res.data[i].name})
+                }
+                setSubjects(subjectList)
             })
             .catch(() => {
                 setError('Error')
@@ -67,6 +70,8 @@ export default function Schedule({ navigation }) {
         },
     ]
 
+    const subjectList = []
+
 
 
     return (
@@ -81,7 +86,7 @@ export default function Schedule({ navigation }) {
             <View style={styles.select}>
                <RNPickerSelect
                placeholder={{ label: 'Seleccionar carrera', value: null}}
-               onValueChange={(value) => handleSubject(value)}
+               onValueChange={(value) => handleCareer(value)}
                items={carreerList}
                
                />
@@ -90,7 +95,7 @@ export default function Schedule({ navigation }) {
                 <RNPickerSelect
                 placeholder={{ label: 'Seleccionar materia', value: null}}
                 onValueChange={(value) => setMateria(value)}
-                items={carreerList}
+                items={subjects}
                 />
                 <Button
                     mode="contained"

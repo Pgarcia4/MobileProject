@@ -52,97 +52,60 @@ const Grilla = () => {
             label: 'Ingeniería civil',
             value: 'CIV',
         },
-    ]
-    /*
+    ];
+    
     const getLink = () => {
-      downloadResumable();
-      /*axiosInstance
-          .get(`api/grid/${plan}/${carreer}`)
-          .then((res) => {
-              setGrid(res.data)
-          })
-          .catch(() => {
-              setError('Error')
-          })
-        }*/
-    /*
-    
-      const callback = downloadProgress => {
-        const progress = downloadProgress.totalBytesWritten / downloadProgress.totalBytesExpectedToWrite;
-        this.setState({
-            downloadProgress: progress,
-          });
-      };
-      const downloadResumable = FileSystem.createDownloadResumable(
-        link,
-        FileSystem.documentDirectory + carreer + '.pdf',
-        {},
-        callback
-      );
-        
-      
-      
-      try {
-        const { uri } = await downloadResumable.downloadAsync();
-        console.log('Finished downloading to ', uri);
-      } catch (e) {
-        console.error(e);
-      }
-    
-
-      try {
-        await downloadResumable.pauseAsync();
-        console.log('Paused download operation, saving for future retrieval');
-        AsyncStorage.setItem('pausedDownload', JSON.stringify(downloadResumable.savable()));
-      } catch (e) {
-        console.error(e);
-      }
-
-      try {
-        const { uri } = await downloadResumable.resumeAsync();
-        console.log('Finished downloading to ', uri);
-      } catch (e) {
-        console.error(e);
-      };*/
+      if(carreer && plan){
+        axiosInstance
+            .get(`https://project-um-app-mobile.herokuapp.com/api/grid/${plan}/${carreer}`,  {withCredentials: false})
+            .then((res) => {
+                setLink(res.data[0].link);
+                console.log(res.data[0].link);
+            })
+            .catch(() => {
+                setError('Error')
+            })
+        }
+    }
 
     return (
         <View>
             <Text style={styles.title}>Grilla</Text>
             <View style={styles.select}>
-                <RNPickerSelect
-                    placeholder={{ label: 'Seleccionar plan', value: null}}
-                    onValueChange={(value) => setPlan(value)}
-                    items={[
-                        {
-                            label: 'Plan 2022',
-                            value: '2022',
-                        },
-                    ]}
-                />
+               <RNPickerSelect
+               onValueChange={(value) => setPlan(value)}
+               items={[
+                {
+                    label: 'Plan 2022',
+                    value: '2022',
+                },
+                { label: 'Plan 2010',
+                    value: '2010',
+                },
+            ]}
+               />
             </View>
             <View style={styles.select}>
-                <RNPickerSelect
-                    placeholder={{ label: 'Seleccionar carrera', value: null}}
-                    onValueChange={(value) => setCarrera(value)}
-                    items={[
-                        {
-                            label: 'Ingeniería en informática',
-                            value: 'INFO',
-                        },
-                        {
-                            label: 'Ingeniería industrial',
-                            value: 'IND',
-                        },
-                        {
-                            label: 'Ingeniería telemática',
-                            value: 'TEL',
-                        },
-                        {
-                            label: 'Ingeniería civil',
-                            value: 'CIV',
-                        },
-                    ]}
-                />
+            <RNPickerSelect
+               onValueChange={(value) => setCarrera(value)}
+               items={[
+                {
+                  label: 'Ingeniería en informática',
+                  value: 'INF',
+              },
+              {
+                  label: 'Ingeniería industrial',
+                  value: 'IND',
+              },
+              {
+                  label: 'Ingeniería telemática',
+                  value: 'TEL',
+              },
+              {
+                  label: 'Ingeniería civil',
+                  value: 'CIV',
+              },]}
+               />
                 <Button
                     mode="contained"
                     color="#3C5ACF"
@@ -152,6 +115,14 @@ const Grilla = () => {
                 >
                     Buscar
                 </Button>
+                <View>
+                    {link && 
+                    <Image
+                    style={{width: 2000, height: 1000}}
+                    source={{uri: link}}
+                    />
+                    }
+                </View>
             </View>
         </View>
     )

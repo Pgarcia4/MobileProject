@@ -59,7 +59,6 @@ const LogIn = (navigation) => {
         } else{
             setError('Error, mail inválido.')
         }
-    }
 
     return (
         <SafeAreaView>
@@ -147,4 +146,5 @@ const styles = StyleSheet.create({
         color: '#F00',
     },
 })
+}
 export default LogIn

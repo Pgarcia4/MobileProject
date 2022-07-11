@@ -15,12 +15,11 @@ export default function Schedule({ navigation }) {
     const [subjects, setSubjects] = React.useState("");
 
     const handleSchedule = (materia) => {
-        console.log(materia)
-
         axiosInstance
         .get(`https://project-um-app-mobile.herokuapp.com/api/subjectCode/${materia}`, {withCredentials: false})
         .then((res) => {
             console.log(res.data.schedule)
+            setSchedule(res.data.schedule)
         })
         .catch(() => {
             setError('No se selecciono materia')

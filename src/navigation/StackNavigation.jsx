@@ -34,6 +34,7 @@ export default function StackNavigation() {
                 {user ? (
                     <>
                         <Stack.Screen name="Grilla" component={Grilla} />
+                        <Stack.Screen name="Schedule" component={Schedule}/>
                         <Stack.Screen name="Main" component={Main} />
                         <Stack.Screen name="Exams" component={Exams} />
                         <Stack.Screen name="Complains" component={Complains} />

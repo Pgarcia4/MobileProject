@@ -2,8 +2,11 @@ import React from 'react'
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native'
 import { TextInput, Button } from 'react-native-paper'
 import Ionicons from '@expo/vector-icons/Ionicons'
+import { SafeAreaView } from 'react-native-safe-area-context'
+
 
 export default function CreateComplain() {
+    const [error, setError] = React.useState('')
     const [title, setTitle] = React.useState('')
     const [comment, setComment] = React.useState('')
 
@@ -38,12 +41,14 @@ export default function CreateComplain() {
     }
 
     return (
+        <SafeAreaView>
         <View>
             <Image
                 source={require('../../assets/logo.png')}
                 style={styles.logo}
             />
             <Text style={styles.title}>Crear reclamo</Text>
+            <View style={styles.container}>
             <TextInput
                 label="Titulo"
                 value={title}
@@ -58,9 +63,6 @@ export default function CreateComplain() {
                 onChangeText={(comment) => setComment(comment)}
                 style={styles.input}
             />
-            <TouchableOpacity style={styles.secondButton}>
-                <Text style={styles.buttonText}>Subir archivo</Text>
-            </TouchableOpacity>
             <Button
                 mode="contained"
                 style={styles.button}
@@ -74,7 +76,9 @@ export default function CreateComplain() {
                 <Ionicons size={34} name="arrow-back" color="white"  onPress={handleBack} style={styles.backButton}/>
                 <Ionicons size={34} name="home" color="white" onPress={handleMain} style={styles.homeButton}/>
             </View>
+            </View>
         </View>
+        </SafeAreaView>
     )
 }
 
@@ -134,4 +138,11 @@ const styles = StyleSheet.create({
     homeButton: {
         marginHorizontal: 140,
     },
+    error: {
+        fontSize: 20,
+        color: '#F00',
+    },
+    container: {
+        alignItems: 'center',
+    }
 })

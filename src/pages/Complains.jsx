@@ -1,9 +1,11 @@
 import React from 'react'
-import { ScrollView, Image, StyleSheet } from 'react-native'
+import { ScrollView, Image, StyleSheet, View } from 'react-native'
 import { Button } from 'react-native-paper'
 import Ionicons from '@expo/vector-icons/Ionicons'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 export default function Complains({ navigation }) {
+    const [error, setError] = React.useState('')
     function handleCreateComplain() {
         navigation.navigate('CreateComplain')
     }
@@ -16,6 +18,7 @@ export default function Complains({ navigation }) {
     }
 
     return (
+        <SafeAreaView>
         <ScrollView>
             <Image
                 source={require('../../assets/logo.png')}
@@ -35,6 +38,8 @@ export default function Complains({ navigation }) {
                 <Ionicons size={34} name="home" color="white" onPress={handleMain} style={styles.homeButton}/>
             </View>
         </ScrollView>
+        </SafeAreaView>
+
     )
 }
 
@@ -60,5 +65,12 @@ const styles = StyleSheet.create({
     },
     homeButton: {
         marginHorizontal: 140,
+    },
+    error: {
+        fontSize: 20,
+        color: '#F00',
+    },
+    container: {
+        alignItems: 'center',
     },
 })

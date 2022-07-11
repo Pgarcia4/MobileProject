@@ -52,7 +52,6 @@ const LogIn = () => {
                     console.log(error)
                 })
         }
-    }
 
     return (
         <SafeAreaView>
@@ -140,4 +139,5 @@ const styles = StyleSheet.create({
         color: '#F00',
     },
 })
+}
 export default LogIn

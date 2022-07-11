@@ -3,46 +3,55 @@ import { View, Text, Image, StyleSheet } from 'react-native'
 import { Button } from 'react-native-paper'
 import RNPickerSelect from 'react-native-picker-select';
 import axiosInstance from '../utils/axiosConfigNetwork';
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 export default function Schedule({ navigation }) {
     const [carrera, setCarrera] = React.useState('')
     const [materia, setMateria] = React.useState('')
+    const [error, setError] = React.useState('')
     //const [name, setName] = React.useState("");
     //const [teacher, setTeacher] = React.useState("");
     //const [year, setYear] = React.useState("");
-    //const [schedule, setSchedule] = React.useState("");
+    const [schedule, setSchedule] = React.useState("");
+    const [subjects, setSubjects] = React.useState("");
 
     const handleSchedule = () => {
-        console.log(mail)
-        console.log(password)
-
-        if (mail.length === 0) {
-            console.log('Hola1')
-
-            setError('Mail cannot be empty')
-        } else if (password.length === 0) {
-            setError('Password cannot be empty')
+        if (carrera.length === 0) {
+            setError('Debes elegir una opción');
+        } else if (materia.length === 0) {
+            setError('Debes elegir una opción');
         } else {
             axiosInstance
-                .post('login', {
-                    mail,
-                    password,
-                })
-                .then(() => {
-                    console.log('Hola')
-                    signIn({ mail, password })
-                })
-                .catch(() => {
-                    setError('Error en el usuario o la contraseña')
-                    console.log(error)
-                })
+            .get(`api/subject/${materia}/${carrera}`)
+            .then((res) => {
+                setSubjects(res.data)
+            })
+            .catch(() => {
+                setError('Error')
+            })
+        }
+    }
+
+    const handleSubject = (carrera) => {
+        console.log(carrera)
+        if (carrera.length === 0) {
+            setError('Debes elegir una opción');
+        } else {
+            axiosInstance
+            .get(`api/subject/${carrera}`)
+            .then((res) => {
+                setSchedule(res.data)
+            })
+            .catch(() => {
+                setError('Error')
+            })
         }
     }
 
     const carreerList = [
         {
             label: 'Ingeniería en informática',
-            value: 'INFO',
+            value: 'INF',
         },
         {
             label: 'Ingeniería industrial',
@@ -58,27 +67,28 @@ export default function Schedule({ navigation }) {
         },
     ]
 
+
+
     return (
+        <SafeAreaView>
         <View>
             <Image
                 source={require('../../assets/logo.png')}
                 style={styles.logo}
             />
             <Text style={styles.title}>Horarios de materias</Text>
+            <View style={styles.container}>
             <View style={styles.select}>
                <RNPickerSelect
-               onValueChange={(value) => setCarrera(value)}
+               onValueChange={(value) => handleSubject(value)}
                items={carreerList}
+               
                />
             </View>
             <View style={styles.select}>
                 <RNPickerSelect
                 onValueChange={(value) => setMateria(value)}
-                items={[
-                    {
-                        label: 'Materia 1',
-                        value: 'm1',
-                    }]}
+                items={carreerList}
                 />
                 <Button
                     mode="contained"
@@ -88,8 +98,11 @@ export default function Schedule({ navigation }) {
                 >
                     Buscar
                 </Button>
+                <Text style={styles.error}>{error}</Text>
+            </View>
             </View>
         </View>
+        </SafeAreaView>
     )
 }
 
@@ -115,4 +128,11 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginVertical: 12,
     },
+    error: {
+        fontSize: 20,
+        color: '#F00',
+    },
+    container: {
+        alignItems: 'center',
+    }
 })

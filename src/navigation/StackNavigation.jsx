@@ -101,19 +101,15 @@ export default function StackNavigation({ navigation }) {
                     {state.userToken ? (
                         <>
                             <Stack.Screen name="Main" component={Main} />
-                            <Stack.Screen name="Grilla" component={Grilla} />
-                            <Stack.Screen name="Exams" component={Exams} />
-                            <Stack.Screen name="Schedule" component={Schedule}/>
-
-                        </>
-                    ) : (
-                        <>  
-                            <Stack.Screen name="LogIn" component={Schedule} />
-                            <Stack.Screen name="Main" component={Main} />
                             <Stack.Screen name="Exams" component={Exams} />
                             <Stack.Screen name="Complains" component={Complains}/>
                             <Stack.Screen name="CreateComplain" component={CreateComplain}/>
-
+                            <Stack.Screen name="Schedule" component={Schedule}/>
+                            <Stack.Screen name="Grilla" component={Grilla}/>
+                        </>
+                    ) : (
+                        <>  
+                            <Stack.Screen name="LogIn" component={LogIn} />
                         </>
                     )}
                 </Stack.Navigator>

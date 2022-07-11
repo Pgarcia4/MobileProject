@@ -109,7 +109,6 @@ export default function StackNavigation({ navigation }) {
                         </>
                     ) : (
                         <>  
-                            <Stack.Screen name="Grilla" component={Grilla}/>
                             <Stack.Screen name="LogIn" component={LogIn} />
                         </>
                     )}

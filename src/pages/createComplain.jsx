@@ -6,9 +6,9 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 
 
 export default function CreateComplain() {
-    const [error, setError] = React.useState('')
     const [title, setTitle] = React.useState('')
     const [comment, setComment] = React.useState('')
+    const [error, setError] = React.useState('')
 
     const handleCreateComplain = () => {
     

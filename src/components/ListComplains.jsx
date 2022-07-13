@@ -1,13 +1,17 @@
 import React from 'react'
 import { View, Text, Image, StyleSheet } from 'react-native'
 
-export default function ListComplains(title, comment, img) {
+const ListComplains = ({complain}) => {
+    React.useEffect(() => {
+        console.log(complain)
+      });
     return (
         <View>
             <View style={styles.modal}>
-                <Text style={styles.title}>{title}</Text>
-                <Text style={styles.comment}>{comment}</Text>
-                <Image source={img} style={styles.image}></Image>
+                <Text style={styles.title}>{complain.title}</Text>
+                <Text style={styles.userMail}>{complain.userMail}</Text>
+                <Text style={styles.comment}>{complain.message}</Text>
+                <Image source={complain.img ? complain.img : "https://www.wikihow.com/images/4/47/769114-10.jpg"} style={styles.image}></Image>
             </View>
         </View>
     )
@@ -25,6 +29,11 @@ const styles = StyleSheet.create({
         fontSize: 25,
         fontWeight: '700',
     },
+    userMail: {
+        marginHorizontal: 12,
+        color: "#7f8285",
+        fontStyle: "italic"
+    },
     comment: {
         marginHorizontal: 12,
         marginVertical: 5,
@@ -37,3 +46,5 @@ const styles = StyleSheet.create({
         width: 250,
     },
 })
+
+export default ListComplains;

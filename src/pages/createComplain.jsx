@@ -5,6 +5,7 @@ import { TextInput, Button } from 'react-native-paper'
 export default function CreateComplain() {
     const [title, setTitle] = React.useState('')
     const [comment, setComment] = React.useState('')
+    const [error, setError] = React.useState('')
 
     const handleCreateComplain = () => {
     

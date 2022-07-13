@@ -4,6 +4,7 @@ import { Button } from 'react-native-paper'
 import RNPickerSelect from 'react-native-picker-select';
 import { SafeAreaView } from 'react-native-safe-area-context'
 import axiosInstance from '../utils/axiosConfigNetwork';
+import Ionicons from '@expo/vector-icons/Ionicons'
 
 
 export default function Exams({ navigation }) {
@@ -72,6 +73,13 @@ export default function Exams({ navigation }) {
 
     const subjectList = []
 
+    function handleMain() {
+        navigation.navigate('Main')
+    }
+    function handleBack() {
+        navigation.navigate('Main')
+    }
+
     return (
         <SafeAreaView>
         <View>
@@ -104,6 +112,10 @@ export default function Exams({ navigation }) {
                 </Button>
                 <Text style={styles.error}>{error}</Text>
                 </View>
+            </View>
+            <View style={styles.navContainer}>
+                <Ionicons size={34} name="arrow-back" color="white"  onPress={handleBack} style={styles.backButton}/>
+                <Ionicons size={34} name="home" color="white" onPress={handleMain} style={styles.homeButton}/>
             </View>
         </View>
         </SafeAreaView>
@@ -138,5 +150,20 @@ const styles = StyleSheet.create({
     },
     container: {
         alignItems: 'center',
-    }
+    },
+    container: {
+        alignItems: 'center',
+    },
+    navContainer: {
+        backgroundColor: '#263F64',
+        flexDirection: 'row',
+        top: 185,
+        padding: 10,
+    }, 
+    backButton: {
+        marginLeft: 100,
+    },
+    homeButton: {
+        marginHorizontal: 100,
+    },
 })

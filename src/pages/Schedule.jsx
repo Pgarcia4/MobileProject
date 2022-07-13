@@ -16,22 +16,17 @@ export default function Schedule({ navigation }) {
     const [schedule, setSchedule] = React.useState("");
     const [subjects, setSubjects] = React.useState("");
 
-    // const handleSchedule = () => {
-    //     if (carrera.length === 0) {
-    //         setError('Debes elegir una opción');
-    //     } else if (materia.length === 0) {
-    //         setError('Debes elegir una opción');
-    //     } else {
-    //         axiosInstance
-    //         .get(`api/subject/${materia}/${carrera}`)
-    //         .then((res) => {
-    //             setSubjects(res.data)
-    //         })
-    //         .catch(() => {
-    //             setError('Error')
-    //         })
-    //     }
-    // }
+    const handleSchedule = (materia) => {
+        axiosInstance
+        .get(`https://project-um-app-mobile.herokuapp.com/api/subjectCode/${materia}`, {withCredentials: false})
+        .then((res) => {
+            console.log(res.data.schedule)
+            setSchedule(res.data.schedule)
+        })
+        .catch(() => {
+            setError('No se selecciono materia')
+        })
+    }
 
     const handleCareer = (carrera) => {
         console.log(carrera)
@@ -156,7 +151,7 @@ const styles = StyleSheet.create({
     navContainer: {
         backgroundColor: '#263F64',
         flexDirection: 'row',
-        top: 235,
+        top: 205,
         padding: 10,
     }, 
     backButton: {

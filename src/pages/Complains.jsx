@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { View, ScrollView, Image, StyleSheet } from 'react-native'
 import { Button } from 'react-native-paper'
-import axiosInstance from '../utils/axiosConfigNetwork';
-import ListComplains from '../components/ListComplains';
+import axiosInstance from '../utils/axiosConfigNetwork'
+import ListComplains from '../components/ListComplains'
+import Ionicons from '@expo/vector-icons/Ionicons'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 export default function Complains({ navigation }) {
     const [complains, setComplains] = useState([]);
@@ -23,7 +25,15 @@ export default function Complains({ navigation }) {
         navigation.navigate('CreateComplain')
     }
 
+    function handleMain() {
+        navigation.navigate('Main')
+    }
+    function handleBack() {
+        navigation.navigate('Main')
+    }
+
     return (
+        <SafeAreaView>
         <ScrollView>
             <Image
                 source={require('../../assets/logo.png')}
@@ -45,7 +55,13 @@ export default function Complains({ navigation }) {
                     )
                 })}
             </View>
+            <View style={styles.navContainer}>
+                <Ionicons size={34} name="arrow-back" color="white"  onPress={handleBack} style={styles.backButton}/>
+                <Ionicons size={34} name="home" color="white" onPress={handleMain} style={styles.homeButton}/>
+            </View>
         </ScrollView>
+        </SafeAreaView>
+
     )
 }
 
@@ -59,5 +75,24 @@ const styles = StyleSheet.create({
         width: 145,
         height: 65,
         marginLeft: 6,
+    },
+    navContainer: {
+        backgroundColor: '#263F64',
+        flexDirection: 'row',
+        top: 20,
+        padding: 10,
+    }, 
+    backButton: {
+        marginLeft: 150,
+    },
+    homeButton: {
+        marginHorizontal: 140,
+    },
+    error: {
+        fontSize: 20,
+        color: '#F00',
+    },
+    container: {
+        alignItems: 'center',
     },
 })

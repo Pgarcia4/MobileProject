@@ -20,11 +20,14 @@ import {
 import * as FileSystem from 'expo-file-system'
 import 'react-native-gesture-handler'
 import RNPickerSelect from 'react-native-picker-select'
+import { SafeAreaView } from 'react-native-safe-area-context'
+import Ionicons from '@expo/vector-icons/Ionicons'
 
-const Grilla = () => {
+export default function Grilla({ navigation }) {
     const [plan, setPlan] = React.useState('')
     const [carreer, setCarrera] = React.useState('')
     const [grid, setGrid] = React.useState('')
+    const [error, setError] = React.useState('')
     const [link, setLink] = React.useState(
         'https://drive.google.com/uc?export=download&id=11YQvQS0KheqkMnt0qs0x_fxgVRAULo_X'
     )
@@ -68,9 +71,22 @@ const Grilla = () => {
         }
     }
 
+    function handleMain() {
+        navigation.navigate('Main')
+    }
+    function handleBack() {
+        navigation.navigate('Main')
+    }
+
     return (
+        <SafeAreaView>
         <View>
+            <Image
+                source={require('../../assets/logo.png')}
+                style={styles.logo}
+            />
             <Text style={styles.title}>Grilla</Text>
+            <View style={styles.container}>
             <View style={styles.select}>
                <RNPickerSelect
                placeholder={{ label: 'Seleccionar plan', value: null}}
@@ -126,8 +142,14 @@ const Grilla = () => {
                     />
                     }
                 </View>
+                </View>
+            </View>
+            <View style={styles.navContainer}>
+                <Ionicons size={34} name="arrow-back" color="white"  onPress={handleBack} style={styles.backButton}/>
+                <Ionicons size={34} name="home" color="white" onPress={handleMain} style={styles.homeButton}/>
             </View>
         </View>
+        </SafeAreaView>
     )
 }
 
@@ -163,6 +185,25 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginVertical: 12,
     },
+    error: {
+        fontSize: 20,
+        color: '#F00',
+    },
+    container: {
+        alignItems: 'center',
+    },
+    navContainer: {
+        backgroundColor: '#263F64',
+        flexDirection: 'row',
+        top: 35,
+        padding: 10,
+    }, 
+    backButton: {
+        marginLeft: 95,
+    },
+    homeButton: {
+        marginHorizontal: 130,
+    }
 })
 
-export default Grilla
+

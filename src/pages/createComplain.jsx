@@ -5,7 +5,7 @@ import Ionicons from '@expo/vector-icons/Ionicons'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 
-export default function CreateComplain() {
+export default function createComplain() {
     const [title, setTitle] = React.useState('')
     const [comment, setComment] = React.useState('')
     const [error, setError] = React.useState('')

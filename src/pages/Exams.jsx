@@ -165,6 +165,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     }, 
     homeButton: {
-        marginLeft: 50
+        marginLeft: 80
     }
 })

@@ -151,14 +151,15 @@ const styles = StyleSheet.create({
     navContainer: {
         backgroundColor: '#263F64',
         flexDirection: 'row',
-        top: 205,
+        left: 0,
+        bottom: 0,
+        right: 0,
         padding: 10,
+        position: "fixed",
+        justifyContent: 'center'
     }, 
-    backButton: {
-        marginLeft: 150,
-    },
     homeButton: {
-        marginHorizontal: 140,
+        marginLeft: 50
     },
    
 })

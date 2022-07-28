@@ -29,7 +29,7 @@ export default function Complains({ navigation }) {
         navigation.navigate('Main')
     }
     function handleBack() {
-        navigation.navigate('Main')
+        navigation.goBack()
     }
 
     return (

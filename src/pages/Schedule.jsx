@@ -72,7 +72,7 @@ export default function Schedule({ navigation }) {
         navigation.navigate('Main')
     }
     function handleBack() {
-        navigation.navigate('Main')
+        navigation.goBack()
     }
 
 

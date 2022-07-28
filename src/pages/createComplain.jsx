@@ -5,7 +5,7 @@ import Ionicons from '@expo/vector-icons/Ionicons'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 
-export default function createComplain() {
+export default function createComplain({navigation}) {
     const [title, setTitle] = React.useState('')
     const [comment, setComment] = React.useState('')
     const [error, setError] = React.useState('')
@@ -37,7 +37,7 @@ export default function createComplain() {
         navigation.navigate('Main')
     }
     function handleBack() {
-        navigation.navigate('Main')
+        navigation.goBack()
     }
 
     return (

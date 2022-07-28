@@ -75,7 +75,7 @@ export default function Grilla({ navigation }) {
         navigation.navigate('Main')
     }
     function handleBack() {
-        navigation.navigate('Main')
+        navigation.goBack()
     }
 
     return (
